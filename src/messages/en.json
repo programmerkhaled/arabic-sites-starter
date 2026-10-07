@@ -1,0 +1,117 @@
+{
+  "Meta": {
+    "siteName": "Madar",
+    "title": "Madar — Arabic-first web studio",
+    "description": "A bilingual website template built with Next.js, Tailwind and GSAP, companion to the Arabic book «المواقع العربية»."
+  },
+  "Nav": {
+    "home": "Home",
+    "services": "Services",
+    "process": "Process",
+    "contact": "Contact",
+    "menu": "Menu",
+    "close": "Close",
+    "skip": "Skip to content"
+  },
+  "LocaleSwitcher": {
+    "label": "Language",
+    "ar": "العربية",
+    "en": "English"
+  },
+  "Hero": {
+    "kicker": "Demo template",
+    "title": "Arabic websites that read right",
+    "lead": "Correct direction, clear type, and motion that never breaks the text. This template applies every chapter of the book in one project.",
+    "cta": "Start your project",
+    "secondary": "See services"
+  },
+  "Services": {
+    "title": "Services",
+    "lead": "Three services, each revealed as you scroll.",
+    "items": {
+      "web": {
+        "title": "Web design & development",
+        "text": "Bilingual Next.js sites, fast and SEO-ready from day one."
+      },
+      "motion": {
+        "title": "Motion & interaction",
+        "text": "GSAP animation that respects reading direction and reduced-motion settings."
+      },
+      "care": {
+        "title": "Care & maintenance",
+        "text": "Updates and regular performance checks after launch."
+      }
+    }
+  },
+  "Process": {
+    "title": "How we work",
+    "steps": {
+      "discover": {
+        "title": "Discover",
+        "text": "Goals, audience and languages."
+      },
+      "design": {
+        "title": "Design",
+        "text": "Both directions from the start."
+      },
+      "build": {
+        "title": "Build",
+        "text": "Developed and tested on real devices."
+      },
+      "launch": {
+        "title": "Launch",
+        "text": "Deploy, hand over, follow up."
+      }
+    }
+  },
+  "Stats": {
+    "title": "In numbers",
+    "note": "Demo figures, shown to illustrate formatting only",
+    "projects": "projects",
+    "languages": "languages",
+    "budget": "average budget"
+  },
+  "Contact": {
+    "title": "Get in touch",
+    "lead": "Tell us about your project and we’ll reply within one business day.",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Mobile number",
+    "message": "Message",
+    "submit": "Send message",
+    "sending": "Sending…",
+    "sent": "Your message arrived. Thank you.",
+    "error": "Couldn’t send. Try again or reach us on WhatsApp.",
+    "required": "This field is required",
+    "invalidEmail": "Enter a valid email, like name@example.com",
+    "tooLong": "Your message is too long. Keep it under 5000 characters.",
+    "tooMany": "Too many messages in a short time. Try again later or reach us on WhatsApp.",
+    "whatsapp": "Chat on WhatsApp",
+    "whatsappText": "Hello, I’d like to ask about a website project.",
+    "stages": [
+      "Checking your details…",
+      "Sending…",
+      "Almost there…"
+    ]
+  },
+  "Footer": {
+    "rights": "All rights reserved.",
+    "demo": "Demo content — template from the book «المواقع العربية»"
+  },
+  "NotFound": {
+    "title": "Page not found",
+    "text": "The link may have changed or the page was removed.",
+    "back": "Back to home"
+  },
+  "Work": {
+    "link": "See our work",
+    "title": "Our work",
+    "lead": "Demo pieces showing page transitions and reveals.",
+    "back": "Home",
+    "items": [
+      "Bilingual store",
+      "Consulting firm site",
+      "App landing page"
+    ]
+  }
+}

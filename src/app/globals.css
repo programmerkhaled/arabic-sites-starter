@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+/* #region theme */
+@theme {
+  /* ألوان القالب: هوية موقع خالد (كريمي، حبر، أصفر) */
+  --color-paper: #f9f4eb;
+  --color-surface: #f0ece5;
+  --color-ink: #171717;
+  --color-ink-deep: #0d0d0d;
+  --color-line: #d9d5cd;
+  --color-accent: #ffe32e;
+
+  /* مسافة قراءة مريحة للعربية */
+  --leading-arabic: 1.8;
+}
+
+/* inline: لأن القيم متغيرات يولّدها next/font وقت التشغيل */
+@theme inline {
+  --font-sans: var(--font-plex-arabic), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+/* #endregion theme */
+
+/* #region base */
+@layer base {
+  html {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+
+  /* #region leading */
+  body {
+    line-height: var(--leading-arabic);
+  }
+
+  /* الإنجليزية تحتاج مسافة أسطر أقل من العربية */
+  :lang(en) body {
+    line-height: 1.6;
+  }
+  /* #endregion leading */
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-ink-deep);
+  }
+}
+/* #endregion base */
+
+/* #region utilities */
+/* @utility: كلاسات خاصة تعمل مع كل متغيرات Tailwind (hover:، md:، rtl:...) */
+@utility container-page {
+  margin-inline: auto;
+  max-width: 72rem;
+  padding-inline: 1.25rem;
+}
+
+/* #region btn */
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  padding-block: 0.75rem;
+  padding-inline: 1.5rem;
+  font-weight: 700;
+  transition: transform 0.25s ease, filter 0.25s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* #endregion btn */
+
+@utility btn-ghost {
+  background: transparent;
+  color: var(--color-ink);
+  box-shadow: inset 0 0 0 1.5px var(--color-ink);
+}
+/* #endregion utilities */
+
+/* مختبر SplitText: إطار حول كل قطعة ليظهر التقسيم */
+.split-piece {
+  outline: 1px dashed color-mix(in srgb, var(--color-ink) 35%, transparent);
+}
+
+/* #region view-transitions */
+/* اتجاه انتقال الصفحات: «للأمام» يسار في الإنجليزية ويمين في العربية.
+   المتغير يُورَّث لعناصر ::view-transition لأنها تتبع جذر الصفحة <html> */
+/* #region vt-direction */
+:root {
+  --vt-forward: -1;
+}
+:root[dir="rtl"] {
+  --vt-forward: 1;
+}
+
+::view-transition-old(.nav-forward) {
+  --slide: calc(60px * var(--vt-forward));
+  animation: 150ms ease-in both vt-fade reverse, 400ms ease-in-out both vt-slide reverse;
+}
+::view-transition-new(.nav-forward) {
+  --slide: calc(-60px * var(--vt-forward));
+  animation: 210ms ease-out 150ms both vt-fade, 400ms ease-in-out both vt-slide;
+}
+/* #endregion vt-direction */
+::view-transition-old(.nav-back) {
+  --slide: calc(-60px * var(--vt-forward));
+  animation: 150ms ease-in both vt-fade reverse, 400ms ease-in-out both vt-slide reverse;
+}
+::view-transition-new(.nav-back) {
+  --slide: calc(60px * var(--vt-forward));
+  animation: 210ms ease-out 150ms both vt-fade, 400ms ease-in-out both vt-slide;
+}
+
+@keyframes vt-fade {
+  from { opacity: 0; }
+}
+@keyframes vt-slide {
+  from { translate: var(--slide); }
+  to { translate: 0; }
+}
+
+/* الهيدر ثابت أثناء الانتقال: نقطة مرجعية تقول إن المحتوى هو الذي تحرك */
+::view-transition-group(site-header) {
+  animation: none;
+  z-index: 100;
+}
+::view-transition-old(site-header) {
+  display: none;
+}
+::view-transition-new(site-header) {
+  animation: none;
+}
+::view-transition {
+  pointer-events: none;
+}
+/* #endregion view-transitions */
+
+/* #region reduced-motion */
+/* من فعّل «تقليل الحركة» في نظامه: لا انزلاق بين الصفحات، ولا حركة في الأزرار.
+   حركات GSAP محمية داخل gsap.matchMedia في كل مكون */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+  .btn,
+  .btn:hover {
+    transition: none;
+    transform: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+/* #endregion reduced-motion */
